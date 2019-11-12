@@ -16,9 +16,6 @@ namespace GuessThatNumber
 
             while (true) 
             {
-                // Initial correct number
-                // int correctNumber = 7;
-
                 // Create a new Random object
                 Random random = new Random();
 
@@ -52,11 +49,11 @@ namespace GuessThatNumber
                             // Get answer
                             string answerAfterLosing = Console.ReadLine().ToUpper();
                             if (answerAfterLosing == "Y") {
+                                Console.WriteLine("Guess a number between 1 and 10");
+                                score = 10;                               
                                 continue;
-                            } 
-                            else {
-                                return;
                             }
+                            return;
                         }
                         // Keep going
                         continue;
@@ -78,18 +75,18 @@ namespace GuessThatNumber
                             // Get answer
                             string answerAfterLosing2 = Console.ReadLine().ToUpper();
                             if (answerAfterLosing2 == "Y") {
+                                Console.WriteLine("Guess a number between 1 and 10");
+                                score = 10;
                                 continue;
-                            } 
-                            else {
-                                return;
                             }
+                            return;
                         }
                     }
                 }
                 // Print success message
                 PrintColorMessage(ConsoleColor.Yellow, "Congrats! {0} was the correct number", correctNumber);
                 PrintColorMessage(ConsoleColor.Blue, "Your score is {0}", score);
-                DrawPyramid(correctNumber);
+                DrawPyramid(score);
 
                 // Ask user if they want to play again?
                 Console.WriteLine("Want to play again? [Y or N]");
@@ -99,10 +96,8 @@ namespace GuessThatNumber
 
                 if (answerAfterWinning == "Y") {
                     continue;
-                } 
-                else {
-                    return;
                 }
+                return;
             }
         }
 
@@ -125,12 +120,12 @@ namespace GuessThatNumber
         // Function to ask for user's name and greet them
         static void GreetUser()
         {
-            // Ask users name
             Console.WriteLine("What is your name");
             // Get user input
             string inputName = Console.ReadLine();
             // Greeting message
-            Console.WriteLine("Hello {0}, let's play a game...", inputName.ToUpper());
+            string CapName = inputName[0].ToString().ToUpper() + inputName.Substring(1, inputName.Length - 1);
+            Console.WriteLine("Hello {0}, let's play a game...", CapName);
         }
 
         // Function to print different colored messages 
@@ -162,7 +157,6 @@ namespace GuessThatNumber
         static void YouLoseMessage(int correctNumber) 
         {
             PrintColorMessage(ConsoleColor.Cyan, "You lose. The correct number was {0}", correctNumber);
-             // Ask user if they want to play again?
             Console.WriteLine("Want to play again? [Y or N]");
         }
     }
